@@ -26,6 +26,8 @@ namespace Plotting
             $"x{(char)8319}",
             $"log{(char)8336} b"
         };
+        private char small_1 = (char)8321;
+        private char small_2 = (char)8322;
 
         public FormMain()
         {
@@ -35,8 +37,8 @@ namespace Plotting
         private void FormMain_Load(object sender, EventArgs e)
         {
             comboBoxFunctions.Items.AddRange(Functions);
-            labelk1.Text = $"k{(char)8321} = ";
-            labelk2.Text = $"k{(char)8322} = ";
+            labelk1.Text = $"k{small_1} = ";
+            labelk2.Text = $"k{small_2} = ";
         }
 
         private void DisableElements()
@@ -52,7 +54,7 @@ namespace Plotting
         {
             if (index <= 7)
             {
-                labelFunction.Text = $"k{(char)8321} * {Functions[index]}(k{(char)8322} * x + a) + b";
+                labelFunction.Text = $"k{small_1} * {Functions[index]}(k{small_2} * x + a) + b";
                 textBoxk1.Enabled = true;
                 textBoxk2.Enabled = true;
                 textBoxA.Enabled = true;
@@ -61,14 +63,14 @@ namespace Plotting
             }
             else if (index == 8)
             {
-                labelFunction.Text = $"k{(char)8321} * x{(char)8319} + a";
+                labelFunction.Text = $"k{small_1} * x{(char)8319} + a";
                 textBoxk1.Enabled = true;
                 textBoxA.Enabled = true;
                 textBoxN.Enabled = true;
             }
             else
             {
-                labelFunction.Text = $"k{(char)8321} * log{(char)8336}(k{(char)8322} * x + b) + c";
+                labelFunction.Text = $"k{small_1} * log{(char)8336}(k{small_2} * x + b) + c";
                 textBoxk1.Enabled = true;
                 textBoxk2.Enabled = true;
                 textBoxA.Enabled = true;
