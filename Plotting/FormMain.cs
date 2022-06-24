@@ -47,18 +47,14 @@ namespace Plotting
 
         private void DisableElements()
         {
-            textBoxk1.Enabled = false;
-            textBoxk1.Text = "";
-            textBoxk2.Enabled = false;
-            textBoxk2.Text = "";
-            textBoxA.Enabled = false;
-            textBoxA.Text = "";
-            textBoxB.Enabled = false;
-            textBoxB.Text = "";
-            textBoxC.Enabled = false;
-            textBoxC.Text = "";
-            textBoxN.Enabled = false;
-            textBoxN.Text = "";
+            foreach (var control in Controls)
+            {
+                if(control.GetType() == typeof(TextBox))
+                {
+                    (control as TextBox).Enabled = false;
+                    (control as TextBox).Text = "";
+                }
+            }
         }        
 
         private void SetFunction(int index)
@@ -104,29 +100,25 @@ namespace Plotting
 
         private void SetCoefficients(int index)
         {
+            k1 = Convert.ToDouble(textBoxk1.Text);
+            a = Convert.ToDouble(textBoxA.Text);
             if (index <= 7)
             {
-                k1 = Convert.ToDouble(textBoxk1.Text);
                 k2 = Convert.ToDouble(textBoxk2.Text);
-                a = Convert.ToDouble(textBoxA.Text);
                 b = Convert.ToDouble(textBoxB.Text);
             }
             else if (index == 8)
             {
-                k1 = Convert.ToDouble(textBoxk1.Text);
-                a = Convert.ToDouble(textBoxA.Text);
                 n = Convert.ToDouble(textBoxN.Text);
             }
             else
             {
-                k1 = Convert.ToDouble(textBoxk1.Text);
                 k2 = Convert.ToDouble(textBoxk2.Text);
-                a = Convert.ToDouble(textBoxA.Text);
                 b = Convert.ToDouble(textBoxB.Text);
                 c = Convert.ToDouble(textBoxC.Text);
             }
         }
-
+            
         private void comboBoxFunctions_SelectedValueChanged(object sender, EventArgs e)
         {
             DisableElements();
