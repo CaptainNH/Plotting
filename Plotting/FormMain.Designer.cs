@@ -31,7 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.Graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxFunctions = new System.Windows.Forms.ComboBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -49,12 +49,12 @@
             this.labelC = new System.Windows.Forms.Label();
             this.textBoxN = new System.Windows.Forms.TextBox();
             this.labelN = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Graph)).BeginInit();
             this.SuspendLayout();
             // 
-            // chart
+            // Graph
             // 
-            this.chart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Graph.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea3.AxisX.MajorTickMark.Interval = 0D;
@@ -63,20 +63,20 @@
             chartArea3.AxisY.Maximum = 10D;
             chartArea3.AxisY.Minimum = -10D;
             chartArea3.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea3);
+            this.Graph.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
-            this.chart.Legends.Add(legend3);
-            this.chart.Location = new System.Drawing.Point(8, 226);
-            this.chart.Margin = new System.Windows.Forms.Padding(2);
-            this.chart.Name = "chart";
+            this.Graph.Legends.Add(legend3);
+            this.Graph.Location = new System.Drawing.Point(8, 226);
+            this.Graph.Margin = new System.Windows.Forms.Padding(2);
+            this.Graph.Name = "Graph";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series3.Legend = "Legend1";
             series3.Name = "Series1";
-            this.chart.Series.Add(series3);
-            this.chart.Size = new System.Drawing.Size(912, 390);
-            this.chart.TabIndex = 0;
-            this.chart.Text = "chart1";
+            this.Graph.Series.Add(series3);
+            this.Graph.Size = new System.Drawing.Size(912, 390);
+            this.Graph.TabIndex = 0;
+            this.Graph.Text = "chart1";
             // 
             // label1
             // 
@@ -126,6 +126,7 @@
             this.buttonBuild.TabIndex = 5;
             this.buttonBuild.Text = "Построить график";
             this.buttonBuild.UseVisualStyleBackColor = true;
+            this.buttonBuild.Click += new System.EventHandler(this.buttonBuild_Click);
             // 
             // labelk1
             // 
@@ -270,12 +271,12 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.comboBoxFunctions);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.chart);
+            this.Controls.Add(this.Graph);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
             this.Text = "Построение графиков";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Graph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,7 +284,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Graph;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxFunctions;
         private System.Windows.Forms.Splitter splitter1;

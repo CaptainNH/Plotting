@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Plotting
 {
@@ -84,6 +85,25 @@ namespace Plotting
             DisableElements();
             var index = comboBoxFunctions.SelectedIndex;
             SetFunction(index);
+        }
+
+        private void buttonBuild_Click(object sender, EventArgs e)
+        {
+            //добавляем в Chart область для рисования графиков, их может быть
+            //много, поэтому даем ей имя.
+            Graph.ChartAreas.Add(new ChartArea("Math functions"));
+            //Создаем и настраиваем набор точек для рисования графика, в том
+            //не забыв указать имя области на которой хотим отобразить этот
+            //набор точек.
+            Series mySeriesOfPoint = new Series(comboBoxFunctions.SelectedItem.ToString());
+            mySeriesOfPoint.ChartType = SeriesChartType.Line;
+            mySeriesOfPoint.ChartArea = "Math functions";
+            for (double x = -Math.PI; x <= Math.PI; x += Math.PI / 50.0)
+            {
+                mySeriesOfPoint.Points.AddXY(x, Math.Sin(x));
+            }
+            //Добавляем созданный набор точек в Chart
+            Graph.Series.Add(mySeriesOfPoint);
         }
     }
 }
