@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.Graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.chartGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxFunctions = new System.Windows.Forms.ComboBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -49,40 +48,50 @@
             this.labelC = new System.Windows.Forms.Label();
             this.textBoxN = new System.Windows.Forms.TextBox();
             this.labelN = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Graph)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartGraph)).BeginInit();
             this.SuspendLayout();
             // 
-            // Graph
+            // chartGraph
             // 
-            this.Graph.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chartGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.AxisX.MajorTickMark.Interval = 0D;
-            chartArea3.AxisX.Maximum = 10D;
-            chartArea3.AxisX.Minimum = -10D;
-            chartArea3.AxisY.Maximum = 10D;
-            chartArea3.AxisY.Minimum = -10D;
-            chartArea3.Name = "ChartArea1";
-            this.Graph.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.Graph.Legends.Add(legend3);
-            this.Graph.Location = new System.Drawing.Point(8, 226);
-            this.Graph.Margin = new System.Windows.Forms.Padding(2);
-            this.Graph.Name = "Graph";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.Graph.Series.Add(series3);
-            this.Graph.Size = new System.Drawing.Size(912, 390);
-            this.Graph.TabIndex = 0;
-            this.Graph.Text = "chart1";
+            chartArea1.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisX.Crossing = 0D;
+            chartArea1.AxisX.Interval = 1D;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.Red;
+            chartArea1.AxisX.LineWidth = 2;
+            chartArea1.AxisX.MajorTickMark.Interval = 0D;
+            chartArea1.AxisX.Maximum = 10D;
+            chartArea1.AxisX.Minimum = -10D;
+            chartArea1.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisY.Crossing = 0D;
+            chartArea1.AxisY.Interval = 1D;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Red;
+            chartArea1.AxisY.LineWidth = 2;
+            chartArea1.AxisY.Maximum = 10D;
+            chartArea1.AxisY.Minimum = -10D;
+            chartArea1.Name = "ChartArea1";
+            this.chartGraph.ChartAreas.Add(chartArea1);
+            this.chartGraph.Location = new System.Drawing.Point(346, 11);
+            this.chartGraph.Margin = new System.Windows.Forms.Padding(2);
+            this.chartGraph.Name = "chartGraph";
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Blue;
+            series1.LegendText = "График";
+            series1.Name = "Series1";
+            this.chartGraph.Series.Add(series1);
+            this.chartGraph.Size = new System.Drawing.Size(638, 533);
+            this.chartGraph.TabIndex = 0;
+            this.chartGraph.Text = "chart1";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(61, 13);
+            this.label1.Location = new System.Drawing.Point(24, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(203, 25);
             this.label1.TabIndex = 1;
@@ -93,7 +102,7 @@
             this.comboBoxFunctions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFunctions.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxFunctions.FormattingEnabled = true;
-            this.comboBoxFunctions.Location = new System.Drawing.Point(64, 54);
+            this.comboBoxFunctions.Location = new System.Drawing.Point(27, 52);
             this.comboBoxFunctions.Name = "comboBoxFunctions";
             this.comboBoxFunctions.Size = new System.Drawing.Size(121, 33);
             this.comboBoxFunctions.TabIndex = 2;
@@ -103,7 +112,7 @@
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 627);
+            this.splitter1.Size = new System.Drawing.Size(3, 555);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
@@ -111,7 +120,7 @@
             // 
             this.labelFunction.AutoSize = true;
             this.labelFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelFunction.Location = new System.Drawing.Point(264, 13);
+            this.labelFunction.Location = new System.Drawing.Point(24, 98);
             this.labelFunction.Name = "labelFunction";
             this.labelFunction.Size = new System.Drawing.Size(0, 25);
             this.labelFunction.TabIndex = 4;
@@ -119,10 +128,10 @@
             // 
             // buttonBuild
             // 
-            this.buttonBuild.Location = new System.Drawing.Point(293, 194);
+            this.buttonBuild.Location = new System.Drawing.Point(81, 474);
             this.buttonBuild.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBuild.Name = "buttonBuild";
-            this.buttonBuild.Size = new System.Drawing.Size(353, 28);
+            this.buttonBuild.Size = new System.Drawing.Size(146, 45);
             this.buttonBuild.TabIndex = 5;
             this.buttonBuild.Text = "Построить график";
             this.buttonBuild.UseVisualStyleBackColor = true;
@@ -132,7 +141,7 @@
             // 
             this.labelk1.AutoSize = true;
             this.labelk1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelk1.Location = new System.Drawing.Point(667, 13);
+            this.labelk1.Location = new System.Drawing.Point(22, 169);
             this.labelk1.Name = "labelk1";
             this.labelk1.Size = new System.Drawing.Size(55, 25);
             this.labelk1.TabIndex = 6;
@@ -142,7 +151,7 @@
             // 
             this.labelk2.AutoSize = true;
             this.labelk2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelk2.Location = new System.Drawing.Point(667, 48);
+            this.labelk2.Location = new System.Drawing.Point(22, 204);
             this.labelk2.Name = "labelk2";
             this.labelk2.Size = new System.Drawing.Size(55, 25);
             this.labelk2.TabIndex = 7;
@@ -152,7 +161,7 @@
             // 
             this.textBoxk1.Enabled = false;
             this.textBoxk1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxk1.Location = new System.Drawing.Point(728, 12);
+            this.textBoxk1.Location = new System.Drawing.Point(83, 168);
             this.textBoxk1.Multiline = true;
             this.textBoxk1.Name = "textBoxk1";
             this.textBoxk1.Size = new System.Drawing.Size(192, 26);
@@ -162,7 +171,7 @@
             // 
             this.textBoxk2.Enabled = false;
             this.textBoxk2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxk2.Location = new System.Drawing.Point(728, 48);
+            this.textBoxk2.Location = new System.Drawing.Point(83, 204);
             this.textBoxk2.Multiline = true;
             this.textBoxk2.Name = "textBoxk2";
             this.textBoxk2.Size = new System.Drawing.Size(192, 26);
@@ -172,7 +181,7 @@
             // 
             this.textBoxB.Enabled = false;
             this.textBoxB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxB.Location = new System.Drawing.Point(728, 119);
+            this.textBoxB.Location = new System.Drawing.Point(83, 275);
             this.textBoxB.Multiline = true;
             this.textBoxB.Name = "textBoxB";
             this.textBoxB.Size = new System.Drawing.Size(192, 25);
@@ -182,7 +191,7 @@
             // 
             this.textBoxA.Enabled = false;
             this.textBoxA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxA.Location = new System.Drawing.Point(728, 83);
+            this.textBoxA.Location = new System.Drawing.Point(83, 239);
             this.textBoxA.Multiline = true;
             this.textBoxA.Name = "textBoxA";
             this.textBoxA.Size = new System.Drawing.Size(192, 26);
@@ -192,7 +201,7 @@
             // 
             this.labelB.AutoSize = true;
             this.labelB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelB.Location = new System.Drawing.Point(667, 119);
+            this.labelB.Location = new System.Drawing.Point(22, 275);
             this.labelB.Name = "labelB";
             this.labelB.Size = new System.Drawing.Size(45, 25);
             this.labelB.TabIndex = 11;
@@ -202,7 +211,7 @@
             // 
             this.labelA.AutoSize = true;
             this.labelA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelA.Location = new System.Drawing.Point(667, 83);
+            this.labelA.Location = new System.Drawing.Point(22, 239);
             this.labelA.Name = "labelA";
             this.labelA.Size = new System.Drawing.Size(45, 25);
             this.labelA.TabIndex = 10;
@@ -212,7 +221,7 @@
             // 
             this.textBoxC.Enabled = false;
             this.textBoxC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxC.Location = new System.Drawing.Point(728, 155);
+            this.textBoxC.Location = new System.Drawing.Point(83, 311);
             this.textBoxC.Multiline = true;
             this.textBoxC.Name = "textBoxC";
             this.textBoxC.Size = new System.Drawing.Size(192, 26);
@@ -222,7 +231,7 @@
             // 
             this.labelC.AutoSize = true;
             this.labelC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelC.Location = new System.Drawing.Point(668, 156);
+            this.labelC.Location = new System.Drawing.Point(23, 312);
             this.labelC.Name = "labelC";
             this.labelC.Size = new System.Drawing.Size(44, 25);
             this.labelC.TabIndex = 14;
@@ -232,7 +241,7 @@
             // 
             this.textBoxN.Enabled = false;
             this.textBoxN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxN.Location = new System.Drawing.Point(728, 191);
+            this.textBoxN.Location = new System.Drawing.Point(83, 347);
             this.textBoxN.Multiline = true;
             this.textBoxN.Name = "textBoxN";
             this.textBoxN.Size = new System.Drawing.Size(192, 26);
@@ -242,7 +251,7 @@
             // 
             this.labelN.AutoSize = true;
             this.labelN.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelN.Location = new System.Drawing.Point(668, 192);
+            this.labelN.Location = new System.Drawing.Point(23, 348);
             this.labelN.Name = "labelN";
             this.labelN.Size = new System.Drawing.Size(45, 25);
             this.labelN.TabIndex = 17;
@@ -253,7 +262,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(932, 627);
+            this.ClientSize = new System.Drawing.Size(995, 555);
             this.Controls.Add(this.textBoxN);
             this.Controls.Add(this.labelN);
             this.Controls.Add(this.textBoxC);
@@ -271,12 +280,12 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.comboBoxFunctions);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Graph);
+            this.Controls.Add(this.chartGraph);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
             this.Text = "Построение графиков";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Graph)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartGraph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,7 +293,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart Graph;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartGraph;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxFunctions;
         private System.Windows.Forms.Splitter splitter1;
