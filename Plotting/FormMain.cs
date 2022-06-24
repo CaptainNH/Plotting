@@ -100,22 +100,35 @@ namespace Plotting
 
         private void SetCoefficients(int index)
         {
-            k1 = Convert.ToDouble(textBoxk1.Text);
-            a = Convert.ToDouble(textBoxA.Text);
-            if (index <= 7)
+            try
             {
-                k2 = Convert.ToDouble(textBoxk2.Text);
-                b = Convert.ToDouble(textBoxB.Text);
+
+                k1 = Convert.ToDouble(textBoxk1.Text);
+                a = Convert.ToDouble(textBoxA.Text);
+                if (index <= 7)
+                {
+                    k2 = Convert.ToDouble(textBoxk2.Text);
+                    b = Convert.ToDouble(textBoxB.Text);
+                }
+                else if (index == 8)
+                {
+                    n = Convert.ToDouble(textBoxN.Text);
+                }
+                else
+                {
+                    if (a <= 0 || a == 1)
+                        throw new Exception("Основание логарифма должно быть больше 0 и не равным 1.");
+                    k2 = Convert.ToDouble(textBoxk2.Text);
+                    b = Convert.ToDouble(textBoxB.Text);
+                    c = Convert.ToDouble(textBoxC.Text);
+                }
             }
-            else if (index == 8)
+            catch(Exception ex)
             {
-                n = Convert.ToDouble(textBoxN.Text);
-            }
-            else
-            {
-                k2 = Convert.ToDouble(textBoxk2.Text);
-                b = Convert.ToDouble(textBoxB.Text);
-                c = Convert.ToDouble(textBoxC.Text);
+                if (ex.Message == "Основание логарифма должно быть больше 0 и не равным 1.")
+                    MessageBox.Show(ex.Message);
+                else
+                    MessageBox.Show("Введите целое число или десятичную дробь.");
             }
         }
             
@@ -124,6 +137,8 @@ namespace Plotting
             DisableElements();
             var index = comboBoxFunctions.SelectedIndex;
             SetFunction(index);
+            textBoxFrom.Enabled = true;
+            textBoxTo.Enabled = true;
         }
 
         private double SelectFunction(int index)
@@ -141,7 +156,8 @@ namespace Plotting
                     y = k1 * Math.Tan(k2 * x + a) + b;
                     break;
                 case 3:
-                    y = k1 * 1.0 / Math.Tan(k2 * x + a);
+                    if(Math.Abs(k2 * x + a) > 1e-4)
+                        y = k1 * (Math.Cos(k2 * x + a) / Math.Sin(k2 * x + a)) + b;
                     break;
                 case 4:
                     y = k1 * Math.Asin(k2 * x + a) + b;
@@ -156,6 +172,8 @@ namespace Plotting
                     y = k1 * (Math.PI / 2 - Math.Atan(k2 * x + a)) + b;
                     break;
                 case 8:
+                    if (n < 0 && Math.Abs(x) < 1e-4)
+                        break;
                     y = k1 * Math.Pow(x, n) + a;
                     break;
                 case 9:
@@ -168,9 +186,22 @@ namespace Plotting
         private void buttonBuild_Click(object sender, EventArgs e)
         {
             chartGraph.Series[0].Points.Clear();
-            x0 = -10;
-            xk = 10;
-            h = 0.1;
+            try
+            {
+                x0 = Convert.ToDouble(textBoxFrom.Text);
+                xk = Convert.ToDouble(textBoxTo.Text);
+            }
+            catch
+            {
+                textBoxFrom.Text = "-10";
+                textBoxTo.Text = "10";
+                x0 = -10;
+                xk = 10;
+            }
+            chartGraph.ChartAreas[0].AxisX.Minimum = x0;
+            chartGraph.ChartAreas[0].AxisX.Maximum = xk;
+            chartGraph.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.FixedCount;
+            h = 0.05;
             x = x0;
 
             var functionIndex = comboBoxFunctions.SelectedIndex;
