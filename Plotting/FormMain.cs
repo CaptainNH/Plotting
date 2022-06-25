@@ -17,7 +17,7 @@ namespace Plotting
         private double x0, xk, h, a, b, c, n, k1, k2;
         private double x, y;
 
-        private string[] Functions =
+        private string[] functions =
         {
             "sin",
             "cos",
@@ -40,7 +40,7 @@ namespace Plotting
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            comboBoxFunctions.Items.AddRange(Functions);
+            comboBoxFunctions.Items.AddRange(functions);
             labelk1.Text = $"k{small_1} = ";
             labelk2.Text = $"k{small_2} = ";
         }
@@ -49,19 +49,23 @@ namespace Plotting
         {
             foreach (var control in Controls)
             {
-                if(control.GetType() == typeof(TextBox))
+                if (control.GetType() == typeof(TextBox))
                 {
                     (control as TextBox).Enabled = false;
                     (control as TextBox).Text = "";
                 }
             }
-        }        
+        }
 
         private void SetFunction(int index)
         {
+            textBoxFrom.Text = "-10";
+            textBoxTo.Text = "10";
+            textBoxFrom.Enabled = true;
+            textBoxTo.Enabled = true;
             if (index <= 7)
             {
-                labelFunction.Text = $"k{small_1} * {Functions[index]}(k{small_2} * x + a) + b";
+                labelFunction.Text = $"k{small_1} * {functions[index]}(k{small_2} * x + a) + b";
                 textBoxk1.Enabled = true;
                 textBoxk1.Text = "1";
                 textBoxk2.Enabled = true;
@@ -98,11 +102,10 @@ namespace Plotting
             }
         }
 
-        private void SetCoefficients(int index)
+        private bool SetCoefficients(int index)
         {
             try
             {
-
                 k1 = Convert.ToDouble(textBoxk1.Text);
                 a = Convert.ToDouble(textBoxA.Text);
                 if (index <= 7)
@@ -116,29 +119,30 @@ namespace Plotting
                 }
                 else
                 {
-                    if (a <= 0 || a == 1)
-                        throw new Exception("Основание логарифма должно быть больше 0 и не равным 1.");
                     k2 = Convert.ToDouble(textBoxk2.Text);
                     b = Convert.ToDouble(textBoxB.Text);
+                    if (k2 == 0){ }
                     c = Convert.ToDouble(textBoxC.Text);
                 }
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                if (ex.Message == "Основание логарифма должно быть больше 0 и не равным 1.")
-                    MessageBox.Show(ex.Message);
-                else
-                    MessageBox.Show("Введите целое число или десятичную дробь.");
+                MessageBox.Show("Введите целое число или десятичную дробь.");
+                return false;
             }
+            if (a <= 0 || a == 1)
+            {
+                MessageBox.Show("Основание логарифма должно быть больше 0 и не равным 1.");
+                return false;
+            }
+            return true;
         }
-            
+
         private void comboBoxFunctions_SelectedValueChanged(object sender, EventArgs e)
         {
             DisableElements();
             var index = comboBoxFunctions.SelectedIndex;
             SetFunction(index);
-            textBoxFrom.Enabled = true;
-            textBoxTo.Enabled = true;
         }
 
         private double SelectFunction(int index)
@@ -156,7 +160,7 @@ namespace Plotting
                     y = k1 * Math.Tan(k2 * x + a) + b;
                     break;
                 case 3:
-                    if(Math.Abs(k2 * x + a) > 1e-4)
+                    if (Math.Abs(k2 * x + a) > 1e-4)
                         y = k1 * (Math.Cos(k2 * x + a) / Math.Sin(k2 * x + a)) + b;
                     break;
                 case 4:
@@ -177,7 +181,8 @@ namespace Plotting
                     y = k1 * Math.Pow(x, n) + a;
                     break;
                 case 9:
-                    y = k1 * Math.Log(k2 * x + b, a) + c;
+                    if(Math.Abs(k2 * x + b) > 1e-4)
+                        y = k1 * Math.Log(k2 * x + b, a) + c;
                     break;
             }
             return y;
@@ -186,17 +191,24 @@ namespace Plotting
         private void buttonBuild_Click(object sender, EventArgs e)
         {
             chartGraph.Series[0].Points.Clear();
+            var functionIndex = comboBoxFunctions.SelectedIndex;
+            if (functionIndex == -1)
+            {
+                MessageBox.Show("Выберите функцию.");
+                return;
+            }
             try
             {
                 x0 = Convert.ToDouble(textBoxFrom.Text);
                 xk = Convert.ToDouble(textBoxTo.Text);
+                if (x0 >= xk) throw new Exception();
             }
             catch
             {
-                textBoxFrom.Text = "-10";
-                textBoxTo.Text = "10";
                 x0 = -10;
                 xk = 10;
+                textBoxFrom.Text = "-10";
+                textBoxTo.Text = "10";
             }
             chartGraph.ChartAreas[0].AxisX.Minimum = x0;
             chartGraph.ChartAreas[0].AxisX.Maximum = xk;
@@ -204,12 +216,10 @@ namespace Plotting
             h = 0.05;
             x = x0;
 
-            var functionIndex = comboBoxFunctions.SelectedIndex;
-            SetCoefficients(functionIndex);
-            
-            while(x <= xk)
+            if(!SetCoefficients(functionIndex)) return;
+            while (x <= xk)
             {
-                y = SelectFunction(functionIndex); 
+                y = SelectFunction(functionIndex);
                 chartGraph.Series[0].Points.AddXY(x, y);
                 x += h;
             }
