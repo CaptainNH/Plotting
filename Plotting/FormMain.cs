@@ -121,7 +121,6 @@ namespace Plotting
                 {
                     k2 = Convert.ToDouble(textBoxk2.Text);
                     b = Convert.ToDouble(textBoxB.Text);
-                    if (k2 == 0){ }
                     c = Convert.ToDouble(textBoxC.Text);
                 }
             }
@@ -130,7 +129,7 @@ namespace Plotting
                 MessageBox.Show("Введите целое число или десятичную дробь.");
                 return false;
             }
-            if (a <= 0 || a == 1)
+            if (index == 9 && (a <= 0 || a == 1))
             {
                 MessageBox.Show("Основание логарифма должно быть больше 0 и не равным 1.");
                 return false;
@@ -212,7 +211,7 @@ namespace Plotting
             }
             chartGraph.ChartAreas[0].AxisX.Minimum = x0;
             chartGraph.ChartAreas[0].AxisX.Maximum = xk;
-            chartGraph.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.FixedCount;
+            chartGraph.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
             h = 0.05;
             x = x0;
 
